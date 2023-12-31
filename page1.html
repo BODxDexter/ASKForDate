@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Date Invitation</title>
+  </head>
+  <body>
+    <div id="date-container">
+      <h1>Would you like to go on a date with me?</h1>
+
+      <!-- Gif container -->
+      <div id="gif-container">
+        <img id="gif" src="gif1.gif" alt="Gif" />
+      </div>
+
+      <button id="yes-btn">Yes</button>
+      <button id="no-btn" onmouseover="moveNo()">No</button>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("no-btn");
+      const yesBtn = document.getElementById("yes-btn");
+      const gif = document.getElementById("gif");
+
+      const gif1Src = "gif1.gif"; // Update with the correct path
+      const gif2Src = "gif2.gif"; // Update with the correct path
+
+      const positions = [
+        { x: -50, y: 0 },
+        { x: 0, y: -50 },
+        { x: 50, y: 0 },
+        { x: 0, y: 50 },
+        { x: -50, y: 50 }, // New position for bottom-left
+      ];
+
+      let currentPosition = 0;
+
+      function moveNo() {
+        const { x, y } = positions[currentPosition];
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        gif.src = gif1Src; // Change gif source to gif 1
+        currentPosition = (currentPosition + 1) % positions.length;
+      }
+
+      // Function to reset Yes button's position
+      function resetYes() {
+        yesBtn.style.transform = "translate(0, 0)";
+      }
+
+      noBtn.addEventListener("mouseleave", resetYes);
+    </script>
+  </body>
+</html>
